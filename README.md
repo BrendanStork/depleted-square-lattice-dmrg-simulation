@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a computational condensed matter physics research project focused on studying the Hubbard model on the 1/5-depleted square lattice using the open-source :contentReference[oaicite:0]{index=0} tensor network library.
+This project is a computational condensed matter physics research project focused on studying the Hubbard model on the 1/5-depleted square lattice using the open-source ITensor tensor network library.
 
 The repository implements lattice geometry generation, Hubbard Hamiltonian construction, and DMRG simulation workflows for investigating strongly correlated electron systems and geometry-dependent quantum behavior in depleted lattice structures.
 
@@ -187,4 +187,4 @@ This project is released under the MIT License.
 
 ## Acknowledgments
 
-This project utilizes the open-source :contentReference[oaicite:2]{index=2} tensor network library for DMRG and tensor network simulations.
+This project utilizes the open-source ITensor tensor network library for DMRG and tensor network simulations.
