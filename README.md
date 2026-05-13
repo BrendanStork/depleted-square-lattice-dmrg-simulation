@@ -1,19 +1,18 @@
-# 1/5-Depleted Square Lattice Hubbard Model Simulation
+# 1/5-Depleted Square Lattice Hubbard Model
 
 ## Overview
 
-This project is a computational condensed matter physics framework for studying the Hubbard model on the 1/5-depleted square lattice using tensor network and density matrix renormalization group (DMRG) techniques.
+This project is a computational condensed matter physics research project focused on studying the Hubbard model on the 1/5-depleted square lattice using the open-source :contentReference[oaicite:0]{index=0} tensor network library.
 
-The repository is designed to investigate strongly correlated electron systems, emergent many-body phenomena, and geometry-dependent quantum behavior arising from depleted lattice structures.
+The repository implements lattice geometry generation, Hubbard Hamiltonian construction, and DMRG simulation workflows for investigating strongly correlated electron systems and geometry-dependent quantum behavior in depleted lattice structures.
 
 The project combines:
 
 * Computational many-body physics
-* Tensor network methods
-* Numerical linear algebra
+* Tensor network simulations using ITensor
 * Lattice graph construction
-* Hamiltonian generation
-* Quantum simulation infrastructure
+* Hubbard Hamiltonian generation
+* Numerical modeling of correlated quantum systems
 * Scientific computing workflows
 
 ---
@@ -27,18 +26,18 @@ The Hubbard model is one of the central models in condensed matter physics for s
 
 The Hamiltonian is given by:
 
-[
-H = -t \sum_{\langle i,j \rangle,\sigma} \left(c^{\dagger}*{i\sigma} c*{j\sigma} + h.c.\right) + U \sum_i n_{i\uparrow} n_{i\downarrow}
-]
+```text
+H = -t Σ(c†ᵢσ cⱼσ + h.c.) + U Σnᵢ↑ nᵢ↓
+```
 
 where:
 
-* ( t ) is the hopping parameter
-* ( U ) is the on-site interaction strength
-* ( c^{\dagger}*{i\sigma} ) and ( c*{i\sigma} ) are fermionic creation and annihilation operators
-* ( n_{i\sigma} ) is the number operator
+* `t` is the hopping parameter
+* `U` is the on-site interaction strength
+* `c†(i,σ)` and `c(i,σ)` are fermionic creation and annihilation operators
+* `n(i,σ)` is the number operator
 
-This project focuses specifically on the **1/5-depleted square lattice geometry**, which introduces nontrivial connectivity and frustration effects that can produce rich correlated phases.
+This project focuses specifically on the **1/5-depleted square lattice geometry**, whose modified connectivity can produce nontrivial magnetic and correlated quantum behavior.
 
 ---
 
@@ -46,32 +45,35 @@ This project focuses specifically on the **1/5-depleted square lattice geometry*
 
 The primary goals of this project are:
 
-* Construct flexible lattice-aware Hubbard Hamiltonians
-* Implement scalable tensor network workflows
-* Perform DMRG ground state calculations
+* Construct 1/5-depleted square lattice geometries
+* Build lattice-aware Hubbard Hamiltonians
+* Perform DMRG simulations using ITensor
 * Investigate geometry-dependent correlated behavior
-* Explore magnetic ordering and many-body phases
-* Develop reusable scientific simulation infrastructure
+* Explore magnetic and many-body quantum phases
+* Develop reusable simulation and analysis workflows
 
 ---
 
 ## Features
 
-### Current / Planned Features
+### Current Features
 
-* [x] Custom lattice graph generation
-* [x] Hubbard Hamiltonian construction
-* [x] Configurable hopping structure
-* [x] Fermionic operator handling
-* [x] Sparse operator workflows
-* [ ] DMRG implementation
-* [ ] Ground state calculations
+* [x] 1/5-depleted square lattice generation
+* [x] Configurable Hubbard Hamiltonian construction
+* [x] Custom hopping parameter definitions
+* [x] ITensor-based DMRG simulation workflows
+* [x] Ground state calculation setup
+* [x] Scientific analysis and experimentation tools
+
+### Planned Features
+
 * [ ] Correlation function measurements
 * [ ] Entanglement entropy analysis
 * [ ] Phase diagram exploration
-* [ ] Time evolution methods
 * [ ] Visualization tools
-* [ ] HPC scaling support
+* [ ] HPC scaling workflows
+* [ ] Additional lattice geometries
+* [ ] Extended Hubbard-type models
 
 ---
 
@@ -81,11 +83,11 @@ The primary goals of this project are:
 .
 ├── src/                # Core simulation code
 ├── lattices/           # Lattice geometry definitions
-├── hamiltonians/       # Hamiltonian generation modules
-├── dmrg/               # Tensor network and DMRG workflows
-├── observables/        # Measurements and analysis tools
-├── notebooks/          # Exploratory notebooks and testing
-├── tests/              # Unit and validation tests
+├── hamiltonians/       # Hamiltonian construction
+├── simulations/        # DMRG simulation workflows
+├── observables/        # Measurement and analysis tools
+├── notebooks/          # Exploratory notebooks
+├── tests/              # Validation and testing
 ├── figures/            # Generated plots and visualizations
 ├── data/               # Simulation outputs
 ├── README.md
@@ -98,27 +100,25 @@ The primary goals of this project are:
 
 This project emphasizes:
 
-* Modular simulation architecture
-* Separation of lattice and Hamiltonian logic
-* Reusable physics abstractions
-* Scalable numerical workflows
-* Clean scientific software engineering practices
-
-The codebase is intended to evolve into a general-purpose strongly correlated lattice simulation framework.
+* Computational modeling of strongly correlated systems
+* Lattice-dependent Hamiltonian construction
+* Tensor network simulations using ITensor
+* Numerical experimentation in condensed matter physics
+* Modular scientific computing workflows
+* Clean and reproducible simulation organization
 
 ---
 
 ## Methods and Algorithms
 
-The project uses or plans to use:
+This project uses:
 
 * Density Matrix Renormalization Group (DMRG)
 * Matrix Product States (MPS)
-* Tensor network methods
-* Sparse linear algebra
-* Exact diagonalization for benchmarking
-* Trotterized time evolution
-* Fermionic operator algebra
+* Tensor network methods via ITensor
+* Hubbard model Hamiltonians
+* Numerical many-body simulation techniques
+* Fermionic lattice models
 
 ---
 
@@ -133,7 +133,7 @@ Depleted lattice systems provide an important platform for studying:
 * Quantum criticality
 * Low-dimensional many-body physics
 
-The 1/5-depleted square lattice is particularly interesting because the modified connectivity can generate behavior not present in ordinary square lattice systems.
+The 1/5-depleted square lattice is particularly interesting because its modified connectivity can generate behavior not present in conventional square lattice systems.
 
 ---
 
@@ -144,40 +144,23 @@ This project uses:
 * Python
 * NumPy
 * SciPy
-* ITensor 
+* :contentReference[oaicite:1]{index=1}
 * Jupyter notebooks
-
-
-
-
-## Example Future Usage
-
-```python
-from lattices import DepletedSquareLattice
-from hamiltonians import HubbardHamiltonian
-
-lattice = DepletedSquareLattice(Lx=8, Ly=8)
-
-H = HubbardHamiltonian(
-    lattice=lattice,
-    t=1.0,
-    U=4.0
-)
-```
+* Git/GitHub
 
 ---
 
-## Research Direction
+## Future Directions
 
 Long-term goals include extending the framework toward:
 
-* More general lattice geometries
-* Multi-orbital models
+* Additional lattice geometries
 * Spin models
-* Quantum dynamics
-* Finite temperature methods
-* Quantum computing interfaces
-* Automated simulation pipelines
+* Time evolution methods
+* Finite-temperature simulations
+* Automated parameter sweeps
+* HPC-oriented simulation workflows
+* Expanded observable and analysis support
 
 ---
 
@@ -187,12 +170,12 @@ Brendan Stork
 
 Physics graduate student with experience in:
 
-* Quantum computing
 * Computational physics
+* Quantum many-body systems
 * Tensor network methods
-* Machine learning
 * Scientific programming
-* Strongly correlated quantum systems
+* Quantum computing
+* Machine learning
 
 ---
 
@@ -204,11 +187,4 @@ This project is released under the MIT License.
 
 ## Acknowledgments
 
-This project draws inspiration from research in:
-
-* Strongly correlated electron systems
-* Condensed matter theory
-* Tensor network methods
-* Computational quantum physics
-* Hubbard model simulations
-
+This project utilizes the open-source :contentReference[oaicite:2]{index=2} tensor network library for DMRG and tensor network simulations.
